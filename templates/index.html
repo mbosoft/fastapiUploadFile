@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
+        integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path = '/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path = '/css/style.css') }}" />
+    <title>Upload File</title>
+
+</head>
+
+<body>
+
+    <div class="container ">
+        <div class="d-flex align-items-center flex-column mt-5  ">
+            <h1 class="h1-color">File Upload & File Preview </h1>
+            <p class="p-color">No Plugins FastAPI and Bootstrap 5</p>
+
+            <div class="shadow-sm  rounded p-5 mb-2 d-flex flex-column align-items-center  w-75 border border-1">
+                <i class="fa fa-download fa-3x mb-3" aria-hidden="true"></i>
+                <div class="mb-3">Select a file or drag </div>
+
+
+                <form method="post" enctype="multipart/form-data">
+                    <label>
+                        <input type="text" class="bg-lili p-1 rounded text-white text-center cursor-pointer"  value="Select a file" onclick="openUpload()"> 
+                        <input type="file" id="upload" name="file" style="display:none">
+                    </label>
+                    <input class="bg-lili p-1 rounded text-white" type="submit">
+                </div>
+            </form>
+            {% if list_name %}
+            {% for d in list_name %}
+            <div class="shadow-sm rounded p-1 mb-2 d-flex  align-items-center  w-75 border border-1">
+                <div class="flex-grow-1 bd-highlight">{{ d.file_name }}</div>
+                <a class="align-self-center"  href="/{{ d.id }}">
+                    <img style="width: 40px;" src="{{ url_for('static', path = '/img/delete.png') }}" >
+                </a>
+            </div>
+            {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        function openUpload(){
+            document.getElementById("upload").click()
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+
+
